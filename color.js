@@ -17,24 +17,38 @@ function mean(array) {
 	return tmp;
 }
 
-codes={
+codes= function(code="standard1"){
 
-	f:function(arg) {
-		return [this.code[0] * arg, this.code[1] * arg, this.code[2] * arg];
-	},
-	f2:function(arg) {
-		var res=[this.code[0] * arg, this.code[1] * arg, this.code[2] * arg];
+	//constructor
+	this.code=code;
+	// boilerplate
+	var f = function(arg) {
+		console.log(this.codes[this.code].code);
+		console.log(arg);
+		return [this.codes[this.code].code[0] * arg, this.codes[this.code].code[1] * arg, this.codes[this.code].code[2] * arg];
+	};
+	var f2 = function(arg) {
+		var res = this.f(arg);
 		return res.forEach(function (argument,i,a) {
-			a[i]=a[i].pow(2)
+			a[i] = a[i].pow(2)
 		})
-	},
-	standard1: {code:[0.299, 0.587, 0.114],f:this.f};
-	standard2: {code:[0.2126,0.7152,0.0722],f:this.f},
-	standard3: {code:[0.2126,0.7152,0.0722],f:this.f2},
+	};
+
+	this.codes = {
+		standard1: {code:[0.299, 0.587, 0.114], f:f.bind(this)},
+		standard2: {code:[0.2126,0.7152,0.0722],f:f.bind(this)},
+		standard3: {code:[0.2126,0.7152,0.0722],f:f2.bind(this)},
+	};
+	// interface
+	this.do=function (arg) {
+		return this.codes[this.code].f(arg);
+	}
+
 };
-function brightness( indice, code = codes.standard1 )
+
+function brightness( indice, code = "standard1" )
 {
-	var res = code.f();
+	var res = new codes(code).do(indice);
 	res.forEach(function (elem,ind,arr) {
 		arr[ind]=Math.round(arr[ind])
 	})
