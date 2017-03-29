@@ -17,14 +17,12 @@ function mean(array) {
 	return tmp;
 }
 
-codes= function(code="standard1"){
+var Codes= function(code="standard1"){
 
 	//constructor
 	this.code=code;
 	// boilerplate
 	var f = function(arg) {
-		console.log(this.codes[this.code].code);
-		console.log(arg);
 		return [this.codes[this.code].code[0] * arg, this.codes[this.code].code[1] * arg, this.codes[this.code].code[2] * arg];
 	};
 	var f2 = function(arg) {
@@ -35,6 +33,7 @@ codes= function(code="standard1"){
 	};
 
 	this.codes = {
+		test:{code:[0.1,0.7,0.4], f:f.bind(this)},
 		standard1: {code:[0.299, 0.587, 0.114], f:f.bind(this)},
 		standard2: {code:[0.2126,0.7152,0.0722],f:f.bind(this)},
 		standard3: {code:[0.2126,0.7152,0.0722],f:f2.bind(this)},
@@ -46,12 +45,12 @@ codes= function(code="standard1"){
 
 };
 
-function brightness( indice, code = "standard1" )
+function brightness( indice, code = "test" )
 {
-	var res = new codes(code).do(indice);
+	var res = new Codes(code).do(indice + 150);
 	res.forEach(function (elem,ind,arr) {
 		arr[ind]=Math.round(arr[ind])
-	})
+	});
 	return res;
 
 }

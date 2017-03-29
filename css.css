@@ -4,3 +4,7 @@ td{
 	display: inline-block;
 	width: 50px;
 }
+
+table{
+	border-collapse: collapse;
+}
