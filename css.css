@@ -1,3 +1,18 @@
+body{
+	width: 100%;
+	height: 100%;
+	/*margin: 0;*/
+}
+
+table{
+/*	display: flex;
+	justify-content: center;
+*/	border-collapse: collapse;
+	width:100%;
+	height: 100%;
+}
+
+
 td{
 	text-align: center;
 	border: 1px solid;
@@ -5,6 +20,8 @@ td{
 	width: 50px;
 }
 
-table{
-	border-collapse: collapse;
+
+td:hover{
+	cursor: pointer;
+	background-color: red !important;
 }

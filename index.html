@@ -5,9 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="css.css">
 <body>
 
-	<input type="number" id="io" name="coucou" onchange="generate()">
+	<input type="number" id="io" min=	2 max=9 onchange="App.generate(parseInt(this.value));">
 	<table id="table"></table>
-	<script src="main.js"></script>
+	<script src="index.js"></script>
 
 </body>
 </html>
