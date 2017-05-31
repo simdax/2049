@@ -7,7 +7,7 @@ Generator.prototype=
 		var res=length-1;
 		return {x:res,y:res};
 	},
-	genTable: function(nb){
+	genEmptyMatrix: function(nb){
 		var table = [];
 		for (var i = 0; i < (nb*2-1) ; i++) {
 			table.push([]);

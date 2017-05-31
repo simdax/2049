@@ -5,9 +5,81 @@
 	<link rel="stylesheet" type="text/css" href="css.css">
 <body>
 
-	<input type="number" id="io" min=	2 max=9 onchange="App.generate(parseInt(this.value));">
+ 	<input type="number" id="io" min=	2 max=9 onchange="App.generate(parseInt(this.value));">
 	<table id="table"></table>
 	<script src="index.js"></script>
+ 
+	<div id="pions"></div>
+	<style>
+		@keyframes up{
+			0%{
+				background-position: 0px 0px;
+				}
+			100%{
+				background-position: 860px 0px;
+			}
+		}
+		@keyframes right{
+			0%{
+				background-position: 0px 90px;
+				}
+			100%{
+				background-position: 860px 90px;
+			}
+		}
+		@keyframes down{
+			0%{
+				background-position: 0px 180px;
+				}
+			100%{
+				background-position: 860px 180px;
+			}
+		}
+		@keyframes left{
+			0%{
+				background-position: 0px 270px;
+				}
+			100%{
+				background-position: 860px 270px;
+			}
+		}
+		#pions{
+			width: 100px;
+			height: 100px;
+			background: url("img/orc_piratess.png");
+			background-size: 860px;
+			/*animation: play 0.3s steps(9) infinite;		*/
+		}
+	</style>
+	<script>
+		var pion = document.querySelector("#pions");
+		var anim="up";
+		function update() {
+			pion.style.animation = `${anim} 0.3s steps(9) infinite`;
+		};
+
+		window.addEventListener('keydown', function(e){
+			switch (e.key) {
+				case 'ArrowUp':
+					anim = "up"
+					break;
+				case 'ArrowDown':
+					anim = "down"
+					break;
+				case 'ArrowLeft':
+					anim = "left"
+					break;
+				case 'ArrowRight':
+					anim = "right"
+					break;
+				default:
+					null
+					break;
+			};
+			update();
+		})	
+
+	</script>
 
 </body>
 </html>

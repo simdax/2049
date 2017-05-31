@@ -10,7 +10,7 @@ App2049.prototype={
  generate: function(nb) {
 	
 	// this 
-	var array = this.gen.genTable(nb);
+	var array = this.gen.genEmptyMatrix(nb);
 	this.gen.fill(nb,array);
 
 // this generate HTML
