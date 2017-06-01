@@ -8,7 +8,7 @@ function addScript(name) {
 	script.addEventListener('load', function (e) {
 		try {
 			App = new App2049();
-			App.generate(8);
+			App.generate(5,{x:3,y:3});
 			console.log("loadé");
 		}catch(e){}
 	});
