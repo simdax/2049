@@ -7,7 +7,7 @@ Colors.prototype.setColorType = function(type) {
 };
 Colors.prototype.brightness = function(indice)
 {
-	var res = this.codes.do(indice + 150);
+	var res = this.codes.do(indice + 350);
 	res.forEach(function (elem,ind,arr) {
 		arr[ind]=Math.round(arr[ind])
 	});

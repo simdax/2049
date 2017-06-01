@@ -1,6 +1,28 @@
 
 
-function Generator() {};
+function Generator(nb) {
+
+	var dic  = {
+		'>': {x:1,y:0},
+		'v': {x:0,y:1},
+		'<': {x:-1,y:0},
+		'^': {x:0,y:-1},
+	};
+	this.steps=nb;
+	this.dic={};
+	this.mvts =">,<,^,vv".split(",");
+
+	this.mvts.forEach(function(v) {
+		var x=0; var y=0;
+		for (var i = v.length - 1; i >= 0; i--) {
+			var w =v[i]
+			x += dic[w].x;
+			y += dic[w].y;
+		};
+		this.dic[v] = {x:x,y:y};
+	}.bind(this));
+
+};
 Generator.prototype=
 {
 	getCenter: function(length){
@@ -17,9 +39,9 @@ Generator.prototype=
 		};
 		return table;
 	},
-	fill: function(nb,table,begin=this.getCenter(nb),c=0){
+	fill: function(table,begin=this.getCenter(this.steps),c=0){
 		var cc=c+1;	
-		if (cc>nb) {
+		if (cc>this.steps) {
 			return
 		};
 		if (cc>1 && begin.x < table.length && begin.x >= 0) {
@@ -30,9 +52,15 @@ Generator.prototype=
 				console.log(e);
 			}
 		};
-		this.fill(nb,table,{x:begin.x+1,y:begin.y},cc);
-		this.fill(nb,table,{x:begin.x,y:begin.y+1},cc);
-		this.fill(nb,table,{x:begin.x-1,y:begin.y},cc);
-		this.fill(nb,table,{x:begin.x,y:begin.y-1},cc);
+		this.mvts.forEach(function (v) {
+			// console.log(v);		
+			this.fill(table,
+				{x:begin.x+this.dic[v].x,y:begin.y+this.dic[v].y},
+				cc);
+		}.bind(this));
+		// this.fill(nb,table,{x:begin.x+1,y:begin.y},cc);
+		// this.fill(nb,table,{x:begin.x,y:begin.y+1},cc);
+		// this.fill(nb,table,{x:begin.x-1,y:begin.y},cc);
+		// this.fill(nb,table,{x:begin.x,y:begin.y-1},cc);
 	}
 };

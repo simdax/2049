@@ -1,9 +1,9 @@
 function App2049(nb) {
 	this.el=document.getElementById('table');
-	this.gen= new Generator();
 	this.offset={x:nb-1,y:nb-1};
 	this.nb=nb;
-}
+	this.gen= new Generator(nb);
+};
 
 App2049.prototype={
 	setOffset:function (x,y) {
@@ -18,7 +18,7 @@ App2049.prototype={
 	generate: function() {
 
 		var array = this.gen.genEmptyMatrix(this.nb);
-		this.gen.fill(this.nb,array);
+		this.gen.fill(array);
 
 	// this generate HTML
 	var html = "";
@@ -30,14 +30,14 @@ App2049.prototype={
 
 	var colors = new Colors();
 
-	var click = 'App.setOffset(${i},${j})';
 	for (var i = 0; i < array.length ; i++) {
 		html += "<tr>";
 		for (var j = 0; j < array.length ; j++) {
 			if (array[i][j]==0) {
 				html += 
-				`<td onclick=App.setOffset(${i},${j})
-				style='background-color: black'>${array[i][j]}</td>`;
+				`<td 
+				onclick=App.setOffset(${i},${j})
+				style='background-color: #666'>${array[i][j]}</td>`;
 			} else{
 				var br = colors.brightness(flatMatrix[array.length*i+j]);
 				if ((i%2!=0 && j%2!=0)||(i%2==0 && j%2==0)) {
