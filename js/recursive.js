@@ -17,7 +17,7 @@ Generator.prototype=
 		};
 		return table;
 	},
-	fill: function(nb,table,begin,c=0){
+	fill: function(nb,table,begin=this.getCenter(nb),c=0){
 		var cc=c+1;	
 		if (cc>nb) {
 			return

@@ -1,21 +1,20 @@
-function catArrays(arrays) {
-	var tmp = [];
-	for (var i = 0; i < arrays.length; i++) {
-		for (var j = 0; j < arrays[i].length; j++) {
-			tmp.push(arrays[i][j])
-		}
-	};
-	return tmp;
-}
-
-function mean(array) {
-	var max = Math.max(...array);
-	var tmp = [];
-	for (var i = 0; i < array.length; i++) {
-		tmp.push (Math.round(array[i] / max * 255));
-	};
-	return tmp;
-}
+var Colors = function () {
+	this.codes= new Codes();
+};
+Colors.prototype.setColorType = function(type) {
+	this.codes.code=type;
+	// this.brightness()
+};
+Colors.prototype.brightness = function(indice, code = "standard1" )
+{
+	// if(isNaN(indice)){console.log(info);};
+	// this.codes.code=code;
+	var res = this.codes.do(indice + 150);
+	res.forEach(function (elem,ind,arr) {
+		arr[ind]=Math.round(arr[ind])
+	});
+	return res;
+};
 
 var Codes= function(code="standard1"){
 
@@ -44,13 +43,3 @@ var Codes= function(code="standard1"){
 	}
 
 };
-
-function brightness( indice, code = "test" )
-{
-	var res = new Codes(code).do(indice + 150);
-	res.forEach(function (elem,ind,arr) {
-		arr[ind]=Math.round(arr[ind])
-	});
-	return res;
-
-}

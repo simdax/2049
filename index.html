@@ -5,6 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="css.css">
 <body>
 
+<h1>Le rectangle de Pascal</h1>
+
  	<input type="number" id="io" min=	2 max=9 onchange="App.generate(parseInt(this.value));">
 	<table id="table"></table>
 	<script src="index.js"></script>
@@ -21,29 +23,30 @@
 		}
 		@keyframes right{
 			0%{
-				background-position: 0px 90px;
+				background-position: 0px 95px;
 				}
 			100%{
-				background-position: 860px 90px;
+				background-position: 860px 95px;
 			}
 		}
 		@keyframes down{
 			0%{
-				background-position: 0px 180px;
+				background-position: 0px 190px;
 				}
 			100%{
-				background-position: 860px 180px;
+				background-position: 860px 190px;
 			}
 		}
 		@keyframes left{
 			0%{
-				background-position: 0px 270px;
+				background-position: 0px 285px;
 				}
 			100%{
-				background-position: 860px 270px;
+				background-position: 860px 285px;
 			}
 		}
 		#pions{
+			pointer-events: none;
 			width: 100px;
 			height: 100px;
 			background: url("img/orc_piratess.png");
