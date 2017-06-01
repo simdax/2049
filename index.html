@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>2049</title>
+	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" type="text/css" href="css.css">
 <body>
 
@@ -47,11 +48,12 @@
 		}
 		#pions{
 			pointer-events: none;
+			
 			width: 100px;
 			height: 100px;
+
 			background: url("img/orc_piratess.png");
 			background-size: 860px;
-			animation-play-state: running;
 			animation: up 0.3s steps(9) infinite;		
 		}
 	</style>
@@ -88,8 +90,11 @@
 
 
 		function update() {
-			console.log(anim);
-			pion.style.animation = `${anim} 0.3s steps(9) infinite`;
+			if (anim=="stop") {
+				pion.style.animationPlayState="paused"
+			}else{
+				pion.style.animation = `${anim} 0.3s steps(9) infinite`;		
+			}
 		};
 
 		window.addEventListener('keydown', function(e){
@@ -107,7 +112,7 @@
 					anim = anim == "left" ? "stop" : "right";
 					break;
 				default:
-					null
+					null //another key
 					break;
 			};
 			update();

@@ -1,24 +1,18 @@
-body{
-/*	overflow: hidden;
-	width: 100%;
+html,body{
 	height: 100%;
-*/	/*margin: 0;*/
 }
 
 table{
-/*	display: flex;
-	justify-content: center;
-*/	border-collapse: collapse;
+	border-collapse: collapse;
 	width:100%;
-	height: 100%;
+	height: 50vh;
 }
 
 
 td{
 	text-align: center;
 	border: 1px solid;
-	display: inline-block;
-	width: 50px;
+	width: 5%;
 }
 
 
