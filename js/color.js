@@ -5,10 +5,8 @@ Colors.prototype.setColorType = function(type) {
 	this.codes.code=type;
 	// this.brightness()
 };
-Colors.prototype.brightness = function(indice, code = "standard1" )
+Colors.prototype.brightness = function(indice)
 {
-	// if(isNaN(indice)){console.log(info);};
-	// this.codes.code=code;
 	var res = this.codes.do(indice + 150);
 	res.forEach(function (elem,ind,arr) {
 		arr[ind]=Math.round(arr[ind])
@@ -16,7 +14,7 @@ Colors.prototype.brightness = function(indice, code = "standard1" )
 	return res;
 };
 
-var Codes= function(code="standard1"){
+var Codes= function(code="test"){
 
 	//constructor
 	this.code=code;
