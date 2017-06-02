@@ -11,51 +11,17 @@
  	<input type="number" id="io" min=	2 max=9 onchange="App.setWidth(this.value);">
 	<table id="table"></table>
 	<script src="index.js"></script>
- 
-	<div id="pions"></div>
-	<style>
-		@keyframes up{
-			0%{
-				background-position: 0px 0px;
+
+	<template id="template">
+		<svg viewBox="0 0 480 640" width=15 height=15>
+			<style>
+				path{
+					fill: blue;
 				}
-			100%{
-				background-position: 860px 0px;
-			}
-		}
-		@keyframes right{
-			0%{
-				background-position: 0px 95px;
-				}
-			100%{
-				background-position: 860px 95px;
-			}
-		}
-		@keyframes down{
-			0%{
-				background-position: 0px 190px;
-				}
-			100%{
-				background-position: 860px 190px;
-			}
-		}
-		@keyframes left{
-			0%{
-				background-position: 0px 285px;
-				}
-			100%{
-				background-position: 860px 285px;
-			}
-		}
-		.pions{
-			pointer-events: none;
-			
-			width: 100px;
-			height: 100px;
-			background: url("img/orc_pirates.png");
-			background-size: 860px;
-			animation: up 0.3s steps(9) infinite;		
-		}
-	</style>
+			</style>
+			<use xlink:href="img/svg/grass.svg#grass"></use>	
+		</svg>
+	</template>
 
 </body>
 </html>
