@@ -32,11 +32,17 @@ App2049.prototype={
 		svg.appendChild(use);
 		return svg;
 	},
-  createTd: function (object,i,j) {
-  	console.log(this);
+	createSVG: function () {
+		var img = document.createElement("img");
+		img.width=30; img.height=10;
+		img.src = "img/svg/grass.svg";
+		return img; 
+	},
+  createTd: function (i,j) {
+  	// console.log(this);
 		var td = document.createElement('td');
 		td.addEventListener('click',this.callback.bind(this)(i,j));
-		td.appendChild(object);
+		// td.appendChild(object);
 		// td.appendChild(this.createSVG());
 		return td			
 	},
@@ -60,19 +66,19 @@ App2049.prototype={
 		var flatMatrix = math.mean(math.flattenArrays(array));
 
 		var colors = new Colors();
-		var template = document.importNode(this.template.content, true);
+		// var template = document.importNode(this.template.content, true);
 
 			for (var i = 0; i < array.length ; i++) {
 				var tr = document.createElement("tr");
 				for (var j = 0; j < array.length ; j++) {
-					var o = template.cloneNode(true);
+					// var o = template.cloneNode(true);
 					var td;
 					if (array[i][j]==0) {
-						var td = this.createTd(o,i,j);
+						var td = this.createTd(i,j);
 						td.style.backgroundColor='#666';
 					} else{
 						var br = colors.brightness(flatMatrix[array.length*i+j]);
-						var td = this.createTd(o,i,j);
+						var td = this.createTd(i,j);
 						td.style.backgroundColor=`rgba(${br[0]},${br[1]},${br[2]},1)`;
 					}
 					tr.appendChild(td);

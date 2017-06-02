@@ -12,16 +12,55 @@
 	<table id="table"></table>
 	<script src="index.js"></script>
 
-	<template id="template">
-		<svg viewBox="0 0 480 640" width=15 height=15>
-			<style>
-				path{
-					fill: blue;
-				}
-			</style>
-			<use xlink:href="img/svg/grass.svg#grass"></use>	
-		</svg>
-	</template>
+		<svg id="svg" width=1000 height=500>
+		<defs>
+	    <feDiffuseLighting in="SourceGraphic" result="light"
+        lighting-color="white">
+	      <fePointLight x="150" y="60" z="20" />
+  	  </feDiffuseLighting>
+   		<feComposite  id='li' in="SourceGraphic" in2="light"
+                 operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+			<filter id="blurMe">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="1">
+			</filter>	
 
+  <filter id="lightMe2">
+	    <feDiffuseLighting in="SourceGraphic" result="light"
+	        lighting-color="blue">
+	      <feDistantLight azimuth="40" elevation="2"/>
+	    </feDiffuseLighting>
+
+	    <feComposite in="SourceGraphic" in2="light"
+                 operator="arithmetic" k1="1" k2="0.5" k3="0" k4="0"/>
+  </filter>
+		</defs>
+
+			<use href="img/svg/grass.svg#grass" 
+			style="filter: url(#lightMe2); "></use>	
+		</svg>
+
+<script>
+	var light=document.querySelector('#lightMe2');
+	var ev = new MouseEvent('simdax');
+	var mousePos;
+	window.addEventListener('mousemove', function (e) {
+		mousePos=e.pageY;
+	})		
+	setInterval(function () {
+		window.dispatchEvent(ev);
+	}, 2000);
+	window.addEventListener('simdax', function(e){
+		// console.log(e);
+		light.children[1].setAttribute("k1", mousePos / 100);
+		light.children[1].setAttribute("k2", mousePos / 300);
+	})
+</script>
+
+<style>
+	svg{
+		position: absolute;
+		top: 0;
+	}
+</style>
 </body>
 </html>

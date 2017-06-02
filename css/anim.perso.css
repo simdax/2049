@@ -32,7 +32,7 @@
 		}
 		.pions{
 			pointer-events: none;
-			
+			/*z-index: -1;*/
 			width: 100px;
 			height: 100px;
 			background: url("../img/orc_pirates.png");
