@@ -38,21 +38,14 @@ App2049.prototype={
 				html += 
 				`<td 
 				onclick=App.setOffset(${i},${j})
-				style='background-color: #666'>${array[i][j]}</td>`;
+				style='background-color: #666'></td>`;
 			} else{
 				var br = colors.brightness(flatMatrix[array.length*i+j]);
-				// if ((i%2!=0 && j%2!=0)||(i%2==0 && j%2==0)) {
-				// 	html += `<td
-				// 	onclick=App.setOffset(${i},${j})
-				// 	style='background-color: rgba(${br[2]},${br[1]},${br[0]*10},1)'>${array[i][j]}
-				// 	</td>`;
-				// }else{				
 					html += `<td
 					onclick=App.setOffset(${i},${j})
 					style='background-color: rgba(${br[0]},${br[1]},${br[2]},1)'>
-					${array[i][j]}
+					
 					</td>`;
-				// }
 			}
 		}	
 		html += "</tr>";

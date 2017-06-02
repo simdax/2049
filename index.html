@@ -46,7 +46,7 @@
 				background-position: 860px 285px;
 			}
 		}
-		#pions{
+		.pions{
 			pointer-events: none;
 			
 			width: 100px;
@@ -56,68 +56,6 @@
 			animation: up 0.3s steps(9) infinite;		
 		}
 	</style>
-
-
-	<script>
-		var pion = document.querySelector("#pions");
-		var anim="stop";
-		var dir = 'stop';
-		var x=0; var y =0;
-		function marche() {
-			switch (anim) {
-				case 'up':
-					anim = "up";
-					y--;
-					break;
-				case 'down':
-					y++;
-					break;
-				case 'left':
-						x--;
-					break;
-				case 'right':
-						x++;
-					break;
-				default:
-					null
-					break;
-			};
-			var str =  `translate(${x}px, ${y}px)`;	
-			pion.style.transform = str ;
-		};
-
-
-		function update() {
-			if (anim=="stop") {
-				pion.style.animationPlayState="paused"
-			}else{
-				pion.style.animation = `${anim} 0.3s steps(9) infinite`;		
-			}
-		};
-
-		window.addEventListener('keydown', function(e){
-			switch (e.key) {
-				case 'z':
-					anim = anim=='down' ? "stop" : "up";
-					break;
-				case 's':
-					anim = anim=='up' ? "stop" : "down";
-					break;
-				case 'q':
-					anim = anim == "right" ? "stop" : "left";
-					break;
-				case 'd':
-					anim = anim == "left" ? "stop" : "right";
-					break;
-				default:
-					null //another key
-					break;
-			};
-			update();
-		})	
-			setInterval(marche, 50);
-
-	</script>
 
 </body>
 </html>

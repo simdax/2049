@@ -17,7 +17,7 @@ function addScript(name) {
 
 /// main load
 var count = 0;
-var deps= "utils,recursive,color,main".split(",");
+var deps= "utils,recursive,color,main,perso".split(",");
 deps.forEach(function(v) {
 	addScript("js/"+v+".js");
 });
