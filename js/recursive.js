@@ -10,7 +10,7 @@ function Generator(nb) {
 	};
 	this.steps=nb;
 	this.dic={};
-	this.mvts =">,<,^,vv".split(",");
+	this.mvts ="^,<,v,>".split(",");
 
 	this.mvts.forEach(function(v) {
 		var x=0; var y=0;
@@ -53,14 +53,9 @@ Generator.prototype=
 			}
 		};
 		this.mvts.forEach(function (v) {
-			// console.log(v);		
 			this.fill(table,
 				{x:begin.x+this.dic[v].x,y:begin.y+this.dic[v].y},
 				cc);
-		}.bind(this));
-		// this.fill(nb,table,{x:begin.x+1,y:begin.y},cc);
-		// this.fill(nb,table,{x:begin.x,y:begin.y+1},cc);
-		// this.fill(nb,table,{x:begin.x-1,y:begin.y},cc);
-		// this.fill(nb,table,{x:begin.x,y:begin.y-1},cc);
+			}.bind(this));
 	}
 };

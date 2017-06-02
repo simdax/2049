@@ -1,8 +1,9 @@
-function App2049(nb) {
+function App2049(tailleMatrix,nbMvts) {
+	document.querySelector("input[type=number]").value=tailleMatrix;
 	this.el=document.getElementById('table');
-	this.offset={x:nb-1,y:nb-1};
-	this.nb=nb;
-	this.gen= new Generator(nb);
+	this.offset={x:nbMvts-1,y:nbMvts-1};
+	this.nb=tailleMatrix;
+	this.gen= new Generator(nbMvts);
 };
 
 App2049.prototype={
@@ -24,9 +25,9 @@ App2049.prototype={
 	var html = "";
 
 	var math = new Maths();
-	var flatMatrix = math.mean(math.flattenArrays(array));
 
 	array = math.offsetMatrix(this.offset,array,this.nb);
+	var flatMatrix = math.mean(math.flattenArrays(array));
 
 	var colors = new Colors();
 
@@ -40,18 +41,18 @@ App2049.prototype={
 				style='background-color: #666'>${array[i][j]}</td>`;
 			} else{
 				var br = colors.brightness(flatMatrix[array.length*i+j]);
-				if ((i%2!=0 && j%2!=0)||(i%2==0 && j%2==0)) {
-					html += `<td
-					onclick=App.setOffset(${i},${j})
-					style='background-color: rgba(${br[2]},${br[1]},${br[0]*10},1)'>${array[i][j]}
-					</td>`;
-				}else{				
+				// if ((i%2!=0 && j%2!=0)||(i%2==0 && j%2==0)) {
+				// 	html += `<td
+				// 	onclick=App.setOffset(${i},${j})
+				// 	style='background-color: rgba(${br[2]},${br[1]},${br[0]*10},1)'>${array[i][j]}
+				// 	</td>`;
+				// }else{				
 					html += `<td
 					onclick=App.setOffset(${i},${j})
 					style='background-color: rgba(${br[0]},${br[1]},${br[2]},1)'>
 					${array[i][j]}
 					</td>`;
-				}
+				// }
 			}
 		}	
 		html += "</tr>";

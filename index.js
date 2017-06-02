@@ -6,7 +6,7 @@ function addScript(name) {
 	script.addEventListener('load', function (e) {
 		count++;
 		if (count == deps.length) {
-			App = new App2049(5);
+			App = new App2049(8,5);
 			App.generate();
 			console.log("loadé");
 		}
