@@ -18,32 +18,37 @@ App2049.prototype={
 		this.nb=nb;
 		this.generate();
 	},
+	setMvts: function(mvts) {
+		this.gen.setMvts(mvts);
+		this.generate();
+	},
+	setSteps:function(steps) {
+		this.gen.setSteps(steps);
+		this.generate();
+	},
 	callback : function (i,j) {
 			return function(e){
 				this.setOffset(i,j);
 			}.bind(this);
 		},
-	createSVG: function () {
-		var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-		var use = document.createElementNS('http://www.w3.org/2000/svg','use');
-		use.setAttributeNS('http://www.w3.org/1999/xlink', 
-			'href', 
-			'img/svg/grass.svg#svg');
-		svg.appendChild(use);
-		return svg;
-	},
-	createSVG: function () {
-		var img = document.createElement("img");
-		img.width=30; img.height=10;
-		img.src = "img/svg/grass.svg";
-		return img; 
-	},
+	// createSVG: function () {
+	// 	var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+	// 	var use = document.createElementNS('http://www.w3.org/2000/svg','use');
+	// 	use.setAttributeNS('http://www.w3.org/1999/xlink', 
+	// 		'href', 
+	// 		'img/svg/grass.svg#svg');
+	// 	svg.appendChild(use);
+	// 	return svg;
+	// },
+	// createSVG: function () {
+	// 	var img = document.createElement("img");
+	// 	img.width=30; img.height=10;
+	// 	img.src = "img/svg/grass.svg";
+	// 	return img; 
+	// },
   createTd: function (i,j) {
-  	// console.log(this);
 		var td = document.createElement('td');
 		td.addEventListener('click',this.callback.bind(this)(i,j));
-		// td.appendChild(object);
-		// td.appendChild(this.createSVG());
 		return td			
 	},
 	generate: function() {
