@@ -4,8 +4,8 @@ function App2049(tailleMatrix,nbMvts) {
 	this.offset={x:nbMvts-1,y:nbMvts-1};
 	this.nb=tailleMatrix;
 	this.gen= new Generator(nbMvts);
-
-	this.template=document.querySelector('#template');
+	// this.template=document.querySelector('#template');
+	this.mvts=[];
 };
 
 App2049.prototype={
@@ -18,8 +18,21 @@ App2049.prototype={
 		this.nb=nb;
 		this.generate();
 	},
-	setMvts: function(mvts) {
-		this.gen.mvts=mvts;
+	setMvts: function(mvts,i) {
+		var s = document.querySelectorAll('.steps');
+		this.mvts=[];
+		s.forEach( function(v, i) {
+			if (v.value.match(/[^<>v^,]/)) {
+				console.log('non');
+			}else{
+					this.mvts[i]=v.value			
+			}
+		}.bind(this));
+		this.gen.setMvts(this.mvts);
+		this.generate();
+	},
+	setSteps:function(steps) {
+		this.gen.setSteps(steps);
 		this.generate();
 	},
 	callback : function (i,j) {
@@ -27,8 +40,9 @@ App2049.prototype={
 				this.setOffset(i,j);
 			}.bind(this);
 		},
-  createTd: function (i,j) {
+  createTd: function (i,j,val) {
 		var td = document.createElement('td');
+		td.textContent = val || 0;
 		td.addEventListener('click',this.callback.bind(this)(i,j));
 		return td			
 	},
@@ -63,8 +77,9 @@ App2049.prototype={
 						var td = this.createTd(i,j);
 						td.style.backgroundColor='#666';
 					} else{
-						var br = colors.brightness(flatMatrix[array.length*i+j]);
-						var td = this.createTd(i,j);
+						var val = flatMatrix[array.length*i+j];
+						var br = colors.brightness(val)
+						var td = this.createTd(i,j,val);
 						td.style.backgroundColor=`rgba(${br[0]},${br[1]},${br[2]},1)`;
 					}
 					tr.appendChild(td);

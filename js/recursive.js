@@ -2,36 +2,31 @@
 
 function Generator(nb) {
 
-	this.Dic  = {
-			'>': {x:1,y:0},
-			'v': {x:0,y:1},
-			'<': {x:-1,y:0},
-			'^': {x:0,y:-1},
-		};
+	var dic  = {
+		'>': {x:1,y:0},
+		'v': {x:0,y:1},
+		'<': {x:-1,y:0},
+		'^': {x:0,y:-1},
+	};
 	this.steps=nb;
 	this.dic={};
-	this.mvts ="^,<,v,>".split(',');	
-	this.generateDic();
+	this.mvts ="^,<,v,>".split(",");
+
+	this.mvts.forEach(function(v) {
+		var x=0; var y=0;
+		for (var i = v.length - 1; i >= 0; i--) {
+			var w =v[i]
+			x += dic[w].x;
+			y += dic[w].y;
+		};
+		this.dic[v] = {x:x,y:y};
+	}.bind(this));
+
 };
 Generator.prototype=
 {
-	generateDic:function() {
-		this.mvts.forEach(function(v) {
-			var x=0; var y=0;
-			for (var i = v.length - 1; i >= 0; i--) {
-				var w =v[i]
-				x += this.Dic[w].x;
-				y += this.Dic[w].y;
-			};
-			this.dic[v] = {x:x,y:y};
-		}.bind(this));
-	},
-	setSteps:function(steps) {
-		this.steps=steps;
-	},
 	setMvts:function(mvts) {
-		this.mvts=mvts.split(',');
-		this.generateDic();
+		this.mvts=mvts.split(",");
 	},
 	getCenter: function(length){
 		var res=length-1;

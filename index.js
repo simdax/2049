@@ -1,4 +1,5 @@
 
+var count = 0;
 
 function addScript(name) {
 	var script = document.createElement('script');
@@ -8,7 +9,7 @@ function addScript(name) {
 		if (count == deps.length) {
 			App = new App2049(8,5);
 			App.generate();
-			console.log("loadé");
+			console.log("App 2049 loadé");
 		}
 	});
 	document.body.appendChild(script);
@@ -16,9 +17,16 @@ function addScript(name) {
 
 
 /// main load
-var count = 0;
-var deps= "utils,generator,color,main,perso".split(",");
+var deps= "utils,generator,color,app,perso".split(",");
 deps.forEach(function(v) {
-	addScript("js/"+v+".js");
+	addScript("js/app/"+v+".js");
 });
 
+var deps2="steps".split(',');
+$(function () {
+	deps2.forEach( function(v) {
+		var script = document.createElement('script');
+		script.src = "js/interface/"+v+".js";
+		document.body.appendChild(script);
+	});
+})

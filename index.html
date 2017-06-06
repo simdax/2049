@@ -2,40 +2,76 @@
 <html>
 <head>
 	<title>2049</title>
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css.css">
+	<script src="//unpkg.com/jquery"></script>
 <body>
 
 <h1>Le rectangle de Pascal</h1>
 
- 	<input type="number" id="io" min=	2 max=9 onchange="App.setWidth(this.value);">
-	<table id="table"></table>
+ 	<input type="number" id="io" min=	2 max=12 onchange="App.setWidth(this.value);">
+	<table id="table"
+		onclick='document.querySelector("ul").classList.remove("visible")'
+		></table>
 	<script src="index.js"></script>
 
-	<label >
-		type of movement
-		<input 
-			type="nb" value="<,>,v,^"
-			onchange="App.setMvts(this.value)"
-		>
-	</label>
-	<label >
-		nb of mvts
-		<input 
-		type="number" min=3 max=4 value=5
-		onchange="App.setSteps(this.value)"
-		>
-	</label>
+		<label >
+			type of movments
+			<input
+				class="steps" 
+				type="text" value="<"
+			>
+			<input
+				class="steps" 
+				type="text" value="^"
+			>
+			<input
+				class="steps" 
+				type="text" value="v^"
+			>
+		</label>
+		<label >
+			nb of mvts
+			<input
+			type="number" min=3 max=8 value=5
+			onchange="App.setSteps(this.value)"
+			>	
+		</label>
+			<ul class="hidden">
+				<li><button>></button></li>
+				<li><button><</button></li>
+				<li><button>v</button></li>
+				<li><button>^</button></li>
+			</ul>
 
 <script>
-
+	window.addEventListener('sortie',function (e) {
+		console.log("sortie");
+	})
 </script>
+</body>
 
 <style>
-	svg{
-		position: absolute;
-		top: 0;
+	body{
+		max-height: 100vh;
+		overflow: hidden;
+	}
+	label{
+		display: block;
+		margin: 10px;
+	}
+	input[type='text']{
+		width: 10%;
+	}
+	ul{
+		transition: all 1s;
+	}
+	.hidden{
+		transform: translateY(200%);
+	}
+	.visible{
+		transform: translateY(0);
 	}
 </style>
-</body>
+
 </html>
